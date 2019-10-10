@@ -121,6 +121,10 @@ https://rudderlabs.com/customer-case-study-casino-game/
 
 The client SDKs provide APIs collecting events and sending it to the Rudder Backend.
 
+## Deployment
+
+[![Deploy to Render](http://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
 # Coming Soon
 
 1. More performance benchmarks. On a single m4.2xlarge, Rudder can process ~3K events/sec. We will evaluate other instance types and publish numbers soon.
