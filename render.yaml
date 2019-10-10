@@ -1,0 +1,54 @@
+databases:
+- name: rudder
+
+services:
+- type: pserv
+  name: rudder-d-transformer
+  env: node
+  buildCommand: cd rudder-transformer && npm install
+  startCommand: cd rudder-transformer && npm run start
+
+- type: pserv
+  name: rudder-u-transformer
+  env: node
+  buildCommand: cd rudder-transformer && npm install
+  startCommand: cd rudder-transformer && npm run start-ut
+
+- type: pserv
+  name: rudder-backend
+  env: go
+  buildCommand: go build && > .env
+  startCommand: ./rudder-server
+  envVars:
+  - key: JOBS_DB_HOST
+    fromDatabase:
+      name: rudder
+      property: host
+  - key: JOBS_DB_USER
+    fromDatabase:
+      name: rudder
+      property: user
+  - key: JOBS_DB_PASSWORD
+    fromDatabase:
+      name: rudder
+      property: password
+  - key: PGPASSWORD
+    fromDatabase:
+      name: rudder
+      property: password
+  - key: JOBS_DB_DB_NAME
+    fromDatabase:
+      name: rudder
+      property: database
+  - key: DEST_TRANSFORM_URL
+    fromService:
+      type: pserv
+      name: rudder-d-transformer
+      property: hostport
+  - key: USER_TRANSFORM_URL
+    fromService:
+      type: pserv
+      name: rudder-u-transformer
+      property: hostport
+  - key: CONFIG_BACKEND_TOKEN
+    sync: false
