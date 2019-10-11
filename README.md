@@ -123,7 +123,7 @@ The client SDKs provide APIs collecting events and sending it to the Rudder Back
 
 ## Deployment
 
-[![Deploy to Render](http://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://dashboard.render.localhost:3000/iac/new)
 
 # Coming Soon
 
